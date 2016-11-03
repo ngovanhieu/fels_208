@@ -14,6 +14,15 @@ require('laravel-elixir-vue-2');
  */
 
 elixir(mix => {
-    mix.sass('app.scss')
-       .webpack('app.js');
+    mix.webpack('app.js')
+       .copy(
+            'bower_components/megrim-googlefont/Megrim.ttf',
+            'bower_components/font-awesome/fonts',
+            'public/fonts'
+        )
+       .copy(
+            'bower_components/animate.css/animate.css',
+            'public/css/animate.css'
+        )
+       .sass('app.scss')
 });

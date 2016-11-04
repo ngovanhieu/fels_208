@@ -1,0 +1,22 @@
+{
+  "name": "elearning.app",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Minh Hiep <hiep24892@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/kopitop/fels_208",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "animate.css": "^3.5.2",
+    "megrim-googlefont": "*",
+    "font-awesome": "^4.7.0"
+  }
+}

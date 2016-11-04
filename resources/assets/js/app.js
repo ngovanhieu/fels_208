@@ -15,6 +15,41 @@ require('./bootstrap');
 
 Vue.component('example', require('./components/Example.vue'));
 
-const app = new Vue({
-    el: '#app'
+
+ const app = new Vue({
+    el: 'body'
 });
+
+
+//FELS Style
+$(document).ready(function (e) {
+    $('.menu-bar').on('click', function (e) {
+        $(this).toggleClass('change');
+    });
+
+    $(window).scroll(function (e) {
+        var y = $(window).scrollTop();
+        $('.welcome').css('bottom', -y * 0.5 + 'px');
+    });
+
+    $('.menu-bar').on('click', function (e) {
+        $('.fullscreen-menu').toggle('slow');
+        e.stopPropagation();
+    });
+
+    $(window).on('click', function (e) {
+        if ($('.fullscreen-menu').css('display') == 'block') {
+            $('.menu-bar').trigger('click');
+        }
+    })
+
+    function changeLoginSignUp (e) {
+        $('.modal-body.login').toggle(400);
+        $('.modal-body.sign-up').toggle(400);
+    }
+
+    $('.sign-up-button').on('click', changeLoginSignUp);
+
+    $('.back-to-login').on('click', changeLoginSignUp);
+
+})

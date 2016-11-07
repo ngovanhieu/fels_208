@@ -55,4 +55,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Social');
     }
+
+    public function isAdmin()
+    {
+        return $this->role == config('user.admin') || $this->role == config('user.super-admin');
+    }
 }

@@ -50,4 +50,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Relationship', 'following_id');
     }
+
+    public function socials()
+    {
+        return $this->hasMany('App\Models\Social');
+    }
 }

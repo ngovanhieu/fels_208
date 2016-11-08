@@ -6,15 +6,21 @@
   },
   "devDependencies": {
     "bootstrap-sass": "^3.3.7",
+    "bower": "^1.7.7",
     "gulp": "^3.9.1",
+    "gulp-bower": "0.0.13",
+    "gulp-notify": "^2.2.0",
+    "gulp-ruby-sass": "^2.1.1",
     "jquery": "^3.1.0",
     "laravel-elixir": "^6.0.0-9",
     "laravel-elixir-vue-2": "^0.2.0",
     "laravel-elixir-webpack-official": "^1.0.2",
     "lodash": "^4.16.2",
     "vue": "^2.0.1",
-    "vue-resource": "^1.0.3",
-    "bower": "^1.7.7"
+    "vue-resource": "^1.0.3"
   },
-  "cacheDirectories": ["node_modules", "bower_components"]
+  "cacheDirectories": [
+    "node_modules",
+    "bower_components"
+  ]
 }

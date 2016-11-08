@@ -32,3 +32,7 @@ Route::group(['namespace' => 'Auth'], function () {
 });
 
 Route::get('/home', 'HomeController@index');
+
+Route::group(['namespace' => 'User'], function(){
+    Route::get('profile', 'ProfileController@show');
+});

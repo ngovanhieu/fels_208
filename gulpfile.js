@@ -16,8 +16,8 @@ require('laravel-elixir-vue-2');
 elixir(mix => {
     mix.webpack('app.js')
        .copy(
-            'bower_components/megrim-googlefont/Megrim.ttf',
-            'bower_components/font-awesome/fonts',
+            ['bower_components/megrim-googlefont/Megrim.ttf',
+            'bower_components/font-awesome/fonts',],
             'public/fonts'
         )
        .copy(

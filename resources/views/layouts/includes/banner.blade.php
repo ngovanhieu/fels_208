@@ -17,6 +17,9 @@
                                 <ul class="logged">
                                     <li>{{ trans('fels.hello') }} <strong>{{ Auth::user()->name }}</strong>
                                         <ul class="card-1">
+                                            @if(Gate::allows('access-admin'))
+                                            <li><a href="{{ url('/admin') }}" >{{ trans('fels.admin-cp') }}</a></li>
+                                            @endif
                                             <li>
                                                 <a href="{{ url('/logout') }}"
                                                 onclick="event.preventDefault();

@@ -23,26 +23,27 @@ Vue.component('example', require('./components/Example.vue'));
 
 //FELS Style
 $(document).ready(function (e) {
+    //Toggle menu fullscreen
     $('.menu-bar').on('click', function (e) {
         $(this).toggleClass('change');
     });
-
-    $(window).scroll(function (e) {
-        var y = $(window).scrollTop();
-        $('.welcome').css('bottom', -y * 0.5 + 'px');
-    });
-
     $('.menu-bar').on('click', function (e) {
         $('.fullscreen-menu').toggle('slow');
         e.stopPropagation();
     });
-
     $(window).on('click', function (e) {
         if ($('.fullscreen-menu').css('display') == 'block') {
             $('.menu-bar').trigger('click');
         }
     })
 
+    //Parralax effect background
+    $(window).scroll(function (e) {
+        var y = $(window).scrollTop();
+        $('.welcome').css('bottom', -y * 0.5 + 'px');
+    });
+
+    //Sign-in sign-up modal
     function changeLoginSignUp (e) {
         $('.modal-body.login').toggle(400);
         $('.modal-body.sign-up').toggle(400);
@@ -52,4 +53,35 @@ $(document).ready(function (e) {
 
     $('.back-to-login').on('click', changeLoginSignUp);
 
+    //Sidebar menu effect
+    $('ul').has('li.active').show();
+
+    $('ul.sidebar li ul li').on('click', function (e) {
+        e.stopPropagation();
+    });
+
+    $('ul.sidebar>li').on('click', function (e) {
+        $('.sidebar li ul').each(function (index, element) {
+            if ($(element).has('li.active').length === 0) {
+                $(element).hide(400);
+            };
+        })
+        $(this).find('ul').show(400);
+    });
+
+    $(document).on('click', function (e) {
+        if ($('.sidebar').has(e.target).length === 0 && e.target) {
+            $('.sidebar li ul').each(function (index, element) {
+                if ($(element).has('li.active').length === 0) {
+                    $(element).hide(400);
+                };
+            })
+        }
+    });
+
+    $(document).on('click', '.status', function () {
+        $('.status').on('click', function (e) {
+            $(this).hide(400);
+        });
+    }); 
 })

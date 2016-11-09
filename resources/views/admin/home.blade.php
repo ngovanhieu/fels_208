@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('sidebar')
+    @include('layouts.includes.sidebar')
+@endsection
+
 @section('content')
 
 @if (session()->has('status'))
@@ -7,6 +11,7 @@
         <p>{{ session('status') }}</p>
     </div>
 @endif
-{{ trans('fels.welcome') }}
+
+{{ trans('fels.welcome-admin') }}
 
 @endsection

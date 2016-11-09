@@ -248,8 +248,8 @@ footer .social-logo {
 /* Link styles */
 
 .login-modal a,
-a:visited,
-a:hover {
+.login-modal a:visited,
+.login-modal a:hover {
     color: #e74c3c;
     text-decoration: none;
 }
@@ -391,7 +391,7 @@ label {
     margin-top: 0;
     margin-bottom: 5px;
 }
-.login-modal .btn {
+.btn {
     height: 37px;
     border-radius: 0;
 }
@@ -436,15 +436,6 @@ label {
     padding-top: 50px;
     padding-bottom: 50px;
     color: #5D4037;
-}
-.subview .sidebar ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-.subview .sidebar li {
-    margin-bottom: 10px;
-    text-align: center;
 }
 .content {
     min-height: 500px;
@@ -556,4 +547,47 @@ label {
     margin-bottom: 30px;
     color: red;
     font-weight: bolder;
+}
+.sidebar li > a{
+    text-align: left;
+    color: #795548;
+}
+.sidebar li ul {
+    display: none;
+}
+.fa-ul {
+    margin-left: 0;
+}
+.fa-li {
+    position: static;
+}
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:focus,
+.nav-pills > li.active > a:hover {
+    background: none;
+}
+.nav-pills > li.active,
+.nav-pills > li.active,
+.nav-pills > li.active {
+    background: #3e2723;
+}
+.subview .content > hr {
+    border-top: 1px solid #3e2723;
+}
+.subview .content form .form-control {
+    width: 70%;
+}
+.subview .sidebar li {
+    text-align: left;
+    margin: 0;
+}
+.fullscreen-menu ul li a {
+    text-transform: uppercase;
+}
+.fullscreen-menu ul li a:hover {
+    text-decoration: none;
+}
+.subview .content table td > img {
+    width: 50px;
+    height: 50px;
 }

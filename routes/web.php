@@ -39,3 +39,8 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin', 'namespace' => 'Admi
     Route::resource('category', 'CategoriesController');
 });
 
+Route::group(['namespace' => 'User', 'middleware'=> 'auth'], function() {
+    Route::resource('profile', 'ProfilesController', ['except' => [
+        'create', 'store', 'delete',
+    ]]);
+});

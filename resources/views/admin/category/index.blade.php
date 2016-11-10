@@ -34,10 +34,10 @@
 <table class="table table-striped">
     <tr>
         <td>{{ trans('fels.id') }}</td>
-        <td>{{ trans('fels.name') }}</td>
-        <td>{{ trans('fels.description') }}</td>
-        <td>{{ trans('fels.photo') }}</td>
-        <td>{{ trans('fels.action') }}</td>
+        <td>{{ trans('category.name') }}</td>
+        <td>{{ trans('category.description') }}</td>
+        <td>{{ trans('category.photo') }}</td>
+        <td>{{ trans('category.action') }}</td>
     </tr>
     @foreach ($categories as $category)
     <tr>
@@ -46,9 +46,9 @@
         <td>{{ $category->description }}</td>
         <td><img src="{{ Storage::url($category->photo) }}" alt=""></td>
         <td>
-            <a href="" class="btn btn-default">{{ trans('fels.edit') }}</a>
+            <a href="{{ action('Admin\CategoriesController@edit', ['id' => $category->id]) }}" class="btn btn-default">{{ trans('fels.button.edit') }}</a>
             {!! Form::open(['route' => ['category.destroy', $category->id], 'method' => 'delete']) !!}
-                <button type="submit" class="btn btn-default">{{ trans('fels.delete') }}</button>
+                <button onclick="return confirm('{{ trans('category.delete.confirm') }}')" type="submit" class="btn btn-default">{{ trans('fels.button.delete') }}</button>
             {!! Form::close() !!}
         </td>
     </tr>
@@ -57,7 +57,7 @@
 {{ $categories->links() }}
 @else
     <div class="alert">
-        <p>{{ trans('fels.nothing-to-show') }}</p>
+        <p>{{ trans('fels.status.nothing-to-show') }}</p>
     </div>
 @endif
 

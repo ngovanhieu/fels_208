@@ -22,7 +22,7 @@
     </div>
   </div>
     <div class="form-group">
-      <a href="{{ action('Admin\CategoriesController@edit', ['id' => $category->id]) }}" class="btn btn-default">{{ trans('fels.edit') }}</a>
+      <a href="{{ action('Admin\CategoriesController@edit', ['id' => $category->id]) }}" class="btn btn-default">{{ trans('fels.button.edit') }}</a>
   </div>
 </form>
 

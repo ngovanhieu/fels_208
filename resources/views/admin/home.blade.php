@@ -12,6 +12,6 @@
     </div>
 @endif
 
-{{ trans('fels.welcome-admin') }}
+{{ trans('fels.status.welcome-admin') }}
 
 @endsection

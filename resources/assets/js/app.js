@@ -80,8 +80,36 @@ $(document).ready(function (e) {
     });
 
     $(document).on('click', '.status', function () {
-        $('.status').on('click', function (e) {
+        $('.status').on('click', function () {
             $(this).hide(400);
         });
     }); 
+
+    //Click image to upload file
+    $('.edit-photo-container').click(function (e) {
+        $('#upload-photo').click();
+    });
+
+    //Preview edited photo
+    function previewFile() {
+        var preview = $('.category-img')[0];
+        var file    = $('#upload-photo')[0].files[0];
+        var reader  = new FileReader();
+
+        reader.onloadend = function () {
+            preview.src = reader.result;
+        }
+
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = "";
+        }
+    }
+
+    $('#upload-photo').on('change', function (e) {
+        previewFile();
+        $('.edit-photo-container p').html($previewStatus);
+    })
+
 })

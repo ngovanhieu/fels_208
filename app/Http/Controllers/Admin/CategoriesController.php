@@ -8,6 +8,7 @@ use App\Http\Requests\StoreCategory;
 use App\Models\Category;
 use Exception;
 use DB;
+use Log;
 
 class CategoriesController extends BaseController
 {
@@ -24,6 +25,7 @@ class CategoriesController extends BaseController
     public function index()
     {   
         $this->viewData['categories'] = Category::paginate(config('category.limit.list_in_admin'));
+        
         return view('admin.category.index', $this->viewData);
     }
 
@@ -77,7 +79,10 @@ class CategoriesController extends BaseController
      */
     public function show($id)
     {
-        //
+        //If inexistent redirect 404
+        $this->viewData['category'] = Category::findOrFail($id);
+
+        return view('admin.category.detail', $this->viewData);
     }
 
     /**
@@ -111,6 +116,16 @@ class CategoriesController extends BaseController
      */
     public function destroy($id)
     {
-        //
+        //If inexist redirect 404
+        $category = Category::findOrFail($id);
+
+        //Delete an unempty category
+        if (count($category->words()->get())) {
+            return back()->withErrors(trans('category.unempty-category'));
+        }
+
+        $category->delete();
+
+        return back()->withSuccess(trans('category.success'));
     }
 }

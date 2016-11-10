@@ -480,6 +480,7 @@ label {
 }
 .logged a {
     color: rgba(0, 0, 0, .87);
+    text-decoration: none;
 }
 .login-modal .login .not-yet-login {
     font-size: 18px;
@@ -574,7 +575,7 @@ label {
 .subview .content > hr {
     border-top: 1px solid #3e2723;
 }
-.subview .content form .form-control {
+.subview .content .form-control {
     width: 70%;
 }
 .subview .sidebar li {
@@ -595,3 +596,50 @@ label {
     width: 200px;
     height: 200px;
 }
+.subview .content table td:last-child{
+    width: 20%;
+}
+.subview .content table td:last-child form {
+    display: inline-block;
+}
+.subview .content form.delete-button {
+    display: inline-block;
+}
+.subview .content table {
+    box-shadow: 1px 1px 10px rgba(0,0,0,0.3);
+}
+.subview .content .category-img {
+    width: 200px;
+    height: 200px;
+}
+body.error-page {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    color: #B0BEC5;
+    display: table;
+    font-weight: 100;
+    font-family: 'Lato', sans-serif;
+}
+.error-page .container {
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+}
+.error-page .content {
+    margin-top: 200px;
+    text-align: center;
+    display: inline-block;
+    min-height: 0; 
+    border-left: none; 
+    padding-left: 0; 
+}
+.error-page .title {
+    font-size: 72px;
+    margin-bottom: 40px;
+    position: static;
+}
+.error-page .content .title:after {
+    display: none;
+}
+

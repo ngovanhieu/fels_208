@@ -42,4 +42,7 @@ return [
     'id' => 'ID',
     'admin-cp' => 'Admin CP',
     'nothing-to-show' => 'There is not any content, you can create the first one',
+    'action' => 'Action',
+    'delete' => 'Delete',
+    'edit' => 'Edit',
 ];

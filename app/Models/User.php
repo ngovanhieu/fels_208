@@ -60,4 +60,9 @@ class User extends Authenticatable
     {
         return $this->role == config('user.admin') || $this->role == config('user.super-admin');
     }
+
+    public function isCurrent()
+    {
+        return auth()->check() && auth()->id() == $this->id;
+    }
 }

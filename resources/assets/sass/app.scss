@@ -608,6 +608,11 @@ label {
 .subview .content table {
     box-shadow: 1px 1px 10px rgba(0,0,0,0.3);
 }
+.subview .content table a{
+    color: #000;
+    font-weight: bold;
+    text-decoration: none;
+}
 .subview .content .category-img {
     width: 200px;
     height: 200px;

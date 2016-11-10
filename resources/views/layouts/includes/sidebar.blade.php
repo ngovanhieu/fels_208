@@ -14,10 +14,10 @@
         <a href="#"><strong>{{ trans('fels.word') }}</strong></a>
         <ul class="nav nav-pills nav-stacked">
             <li class="{!! set_active(['admin/word/create']) !!}">
-                <a href="#"><i class="fa-li fa fa-caret-right"></i>{{ trans('fels.create') }}</a>
+                <a href="{{ action('Admin\WordsController@create') }}"><i class="fa-li fa fa-caret-right"></i>{{ trans('fels.create') }}</a>
             </li>
-            <li class="{!! set_active(['admin/word/']) !!}">
-                <a href="#"><i class="fa-li fa fa-caret-right"></i>{{ trans('fels.list') }}</a>
+            <li class="{!! set_active(['admin/word']) !!}">
+                <a href="{{ action('Admin\WordsController@index') }}"><i class="fa-li fa fa-caret-right"></i>{{ trans('fels.list') }}</a>
             </li>
         </ul>
     </li>

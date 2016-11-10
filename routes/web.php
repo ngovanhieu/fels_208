@@ -37,6 +37,8 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin', 'namespace' => 'Admi
     Route::get('/', 'HomeController@index');
 
     Route::resource('category', 'CategoriesController');
+
+    Route::resource('word', 'WordsController');
 });
 
 Route::group(['namespace' => 'User', 'middleware'=> 'auth'], function() {

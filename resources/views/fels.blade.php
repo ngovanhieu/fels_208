@@ -32,7 +32,7 @@
                             <div class="right pull-right">
                                 @if (Auth::guest())
                                     <div class="user" data-toggle="modal" data-target=".login-modal">
-                                        <p>{{ trans('fels.login') }} / {{ trans('fels.register') }}</p>
+                                        <p>{{ trans('fels.button.login') }} / {{ trans('fels.button.register') }}</p>
                                     </div>
                                 @else
                                     <ul class="logged">
@@ -45,7 +45,7 @@
                                                     <a href="{{ url('/logout') }}"
                                                     onclick="event.preventDefault();
                                                              document.getElementById('logout-form').submit();">
-                                                    <strong>{{ trans('fels.logout') }}</strong>
+                                                    <strong>{{ trans('fels.button.logout') }}</strong>
                                                     </a>
 
                                                     <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
@@ -112,8 +112,8 @@
                                                                 {{ trans('fels.forgot-password') }}
                                                                 </a>
                                                         </div>
-                                                        <button type="submit" class="btn btn-default">{{ trans('fels.sign-in') }}</button>
-                                                        <a href="javascript:;" class="btn btn-default sign-up-button">{{ trans('fels.sign-up') }}</a>
+                                                        <button type="submit" class="btn btn-default">{{ trans('fels.button.sign-in') }}</button>
+                                                        <a href="javascript:;" class="btn btn-default sign-up-button">{{ trans('fels.button.sign-up') }}</a>
                                                     </form>
                                                 </div>
                                             </div>
@@ -157,9 +157,9 @@
                                                     </div>
                                                 </form>
                                                 <div class="button-action text-center">
-                                                    <button type="submit" class="btn btn-default" form="sign-up-form">{{ trans('fels.register') }}</button>
-                                                    <button type="reset" class="btn btn-default">{{ trans('fels.reset') }}</button>
-                                                    <a href="javascript:;" class="back-to-login btn btn-default">{{ trans('fels.back-to-login') }}</a>
+                                                    <button type="submit" class="btn btn-default" form="sign-up-form">{{ trans('fels.button.register') }}</button>
+                                                    <button type="reset" class="btn btn-default">{{ trans('fels.button.reset') }}</button>
+                                                    <a href="javascript:;" class="back-to-login btn btn-default">{{ trans('fels.button.back-to-login') }}</a>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">

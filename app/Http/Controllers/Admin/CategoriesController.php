@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\BaseController;
 use App\Http\Requests\StoreCategory;
+use App\Http\Requests\UpdateCategory;
 use App\Models\Category;
 use Exception;
 use DB;
 use Log;
+use Storage;
 
 class CategoriesController extends BaseController
 {
@@ -62,12 +64,12 @@ class CategoriesController extends BaseController
             //Commit to DB
             DB::commit();
 
-            return redirect('admin/category')->with('status', trans('fels.success'));
+            return redirect('admin/category')->with('status', trans('category.create.success'));
         } catch (Exception $e) {
             DB::rollback();
             Log::debug($e);
             
-            return back()->withErrors(trans('category.create-failed'));
+            return back()->withErrors(trans('category.create.failed'));
         }
     }
 
@@ -93,7 +95,9 @@ class CategoriesController extends BaseController
      */
     public function edit($id)
     {
-        //
+        $this->viewData['category'] = Category::findOrFail($id);
+
+        return view('admin.category.edit', $this->viewData);
     }
 
     /**
@@ -103,9 +107,35 @@ class CategoriesController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(UpdateCategory $request, $id)
+    {   
+        $category = Category::findOrFail($id);
+
+        if ($request->has('name')) {
+            $category->name = $request->name;
+        }
+
+        if ($request->has('description')) {
+            $category->description = $request->description;
+        }
+
+        //Update photo if admin upload photo
+        if ($request->hasFile('photo')) {
+            //Retrieve new photo URL
+            $photoUrl = $request->file('photo')->store(config('fels.upload-path'));
+
+            //Delete old photo
+            Storage::delete($category->photo);
+
+            //Save new photo URL
+            $category->photo = $photoUrl;
+        }
+
+        if ($category->save()) {
+            return back()->withSuccess(trans('category.update.success'));
+        }
+
+        return back()->withErrors(trans('category.update.failed'));
     }
 
     /**
@@ -121,11 +151,11 @@ class CategoriesController extends BaseController
 
         //Delete an unempty category
         if (count($category->words()->get())) {
-            return back()->withErrors(trans('category.unempty-category'));
+            return back()->withErrors(trans('category.delete.unempty-category'));
         }
 
         $category->delete();
 
-        return back()->withSuccess(trans('category.success'));
+        return redirect()->action('Admin\CategoriesController@index')->withSuccess(trans('category.delete.success'));
     }
 }

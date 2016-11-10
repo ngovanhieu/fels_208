@@ -24,7 +24,7 @@
                                                 <a href="{{ url('/logout') }}"
                                                 onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">
-                                                <strong>{{ trans('fels.logout') }}</strong>
+                                                <strong>{{ trans('fels.button.logout') }}</strong>
                                                 </a>
 
                                                 <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
@@ -75,8 +75,8 @@
                                                         <input type="checkbox"> {{ trans('fels.remember') }}
                                                         </label>
                                                     </div>
-                                                    <button type="submit" class="btn btn-default">{{ trans('fels.sign-in') }}</button>
-                                                    <a href="javascript:;" class="btn btn-default sign-up-button">{{ trans('fels.sign-up') }}</a>
+                                                    <button type="submit" class="btn btn-default">{{ trans('fels.button.sign-in') }}</button>
+                                                    <a href="javascript:;" class="btn btn-default sign-up-button">{{ trans('fels.button.sign-up') }}</a>
                                                 </form>
                                             </div>
                                         </div>
@@ -103,9 +103,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="button-action text-center">
-                                                    <button type="submit" class="btn btn-default">{{ trans('fels.register') }}</button>
-                                                    <button type="reset" class="btn btn-default">{{ trans('fels.reset') }}</button>
-                                                    <a href="javascript:;" class="back-to-login btn btn-default">{{ trans('fels.back-to-login') }}</a>
+                                                    <button type="submit" class="btn btn-default">{{ trans('fels.button.register') }}</button>
+                                                    <button type="reset" class="btn btn-default">{{ trans('fels.button.reset') }}</button>
+                                                    <a href="javascript:;" class="back-to-login btn btn-default">{{ trans('fels.button.back-to-login') }}</a>
                                                 </div>
                                             </form>
                                         </div>

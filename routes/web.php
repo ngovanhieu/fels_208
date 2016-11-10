@@ -43,4 +43,6 @@ Route::group(['namespace' => 'User', 'middleware'=> 'auth'], function() {
     Route::resource('profile', 'ProfilesController', ['except' => [
         'create', 'store', 'delete',
     ]]);
+    Route::get('change-password', 'ProfilesController@editPassword');
+    Route::put('change-password', 'ProfilesController@updatePassword');
 });

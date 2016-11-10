@@ -4,6 +4,15 @@
 
 {{ $title }}
 <hr>
+@if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 @if($user)
     <img src="{{ asset($user->avatar) }}" class="avatar" alt=""><br><br>
     <label>{{ trans('fels.name') }}: </label> {{ $user->name }}<br>

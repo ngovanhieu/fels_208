@@ -36,6 +36,10 @@ return [
         'sign-up' => 'Sign Up',
         'reset' => 'Reset',
         'back-to-login' => 'Back to login',
+        'back' => 'Back',
+        'update-profile' => 'Update Profile',
+        'update-submit' => 'Update',
+        'reset' => 'Reset',
     ],
     'status' => [
         'nothing-to-show' => 'There is not any content, you can create the first one',

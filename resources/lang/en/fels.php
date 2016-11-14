@@ -35,7 +35,11 @@ return [
         'sign-in' => 'Sign In',
         'sign-up' => 'Sign Up',
         'reset' => 'Reset',
+        'back' => 'Back',
         'back-to-login' => 'Back to login',
+        'remove' => 'Remove',
+        'update-submit' => 'Submit',
+        'back-to-profile' => 'Back to profile',
     ],
     'status' => [
         'nothing-to-show' => 'There is not any content, you can create the first one',
@@ -44,6 +48,8 @@ return [
         'forbidden' => 'You do not have permission to access that section!',
         'welcome-admin' => 'Welcome to admin CP, you can manage e-learning system here',
         'success' => 'Successfully',
+        'profile-updated' => 'Profile updated!',
+        'password-updated' => 'Password updated!',
     ],
     'menu' => [
         'category' => 'CATEGORY',

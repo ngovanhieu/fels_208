@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Hash;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -64,5 +65,15 @@ class User extends Authenticatable
     public function isCurrent()
     {
         return auth()->check() && auth()->id() == $this->id;
+    }
+
+    public function setPasswordAttribute($pass)
+    {
+        $this->attributes['password'] = Hash::make($pass);
+    }
+
+    public function getAvatarUrlAttribute()
+    {
+        return $this->avatar ? config('user.avatar.upload_path') . $this->id . '/' . $this->avatar : null;
     }
 }

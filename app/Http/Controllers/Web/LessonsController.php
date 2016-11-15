@@ -28,7 +28,11 @@ class LessonsController extends Controller
      */
     public function index()
     {
-        //
+        $this->viewData['lessons'] = Lesson::where('user_id', Auth::user()->id)
+            ->with('category')
+            ->paginate(config('lesson.limit-list'));
+
+        return view('web.lesson.index', $this->viewData);
     }
 
     /**

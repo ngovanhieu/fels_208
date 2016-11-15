@@ -27,3 +27,22 @@ function uploadImage($image, $path, $delete = false) {
         return null;
     }
 }
+
+//make lesson
+function makeLesson($words) {
+    try {
+        $questions = [];
+        foreach ($words as $key => $word) {
+            $questions[$key]['word'] = $word;
+            foreach ($word->answers as $answer) {
+                $questions[$key]['answers'][] = $answer;
+            }
+        }
+
+        return $questions;
+    } catch (Exception $e) {
+        Log::debug($e);
+
+        return null;
+    }
+}

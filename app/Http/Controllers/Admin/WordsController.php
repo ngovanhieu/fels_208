@@ -11,7 +11,7 @@ use DB;
 use Exception;
 use App\Http\Requests\UpdateWord;
 
-class WordsController extends BaseController
+class WordsController extends Controller
 {
     public function __construct()
     {   

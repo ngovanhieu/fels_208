@@ -59,7 +59,7 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-        return $this->role == config('user.admin') || $this->role == config('user.super-admin');
+        return $this->role == config('user.admin');
     }
 
     public function isCurrent()
@@ -75,5 +75,15 @@ class User extends Authenticatable
     public function getAvatarUrlAttribute()
     {
         return $this->avatar ? config('user.avatar.upload_path') . $this->id . '/' . $this->avatar : null;
+    }
+
+    public function isSuperAdmin()
+    {
+        return $this->role == config('user.super-admin');
+    }
+
+    public function isMember()
+    {
+        return $this->role == config('user.member');
     }
 }

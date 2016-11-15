@@ -139,6 +139,7 @@ $(document).ready(function (e) {
                 $(this).parents('.answer-container').remove();
                 i--;
             }
+            
             return false;
         });
     };

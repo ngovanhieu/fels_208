@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Http\Requests\StoreWord;
 use DB;
 use Exception;
+use App\Http\Requests\UpdateWord;
 
 class WordsController extends BaseController
 {
@@ -67,7 +68,6 @@ class WordsController extends BaseController
             DB::commit();
 
             return redirect()->action('Admin\WordsController@index')->with('status', trans('word.create.success'));
-
         } catch (Exception $e) {
             DB::rollback();
             Log::debug($e);
@@ -95,7 +95,13 @@ class WordsController extends BaseController
      */
     public function edit($id)
     {
-        //
+        $word = Word::findOrFail($id);
+
+        $this->viewData['categories'] = Category::all();
+        $this->viewData['answers'] = $word->answers;
+        $this->viewData['word'] = $word;
+
+        return view('admin.word.edit', $this->viewData);
     }
 
     /**
@@ -105,9 +111,38 @@ class WordsController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateWord $request, $id)
     {
-        //
+        DB::beginTransaction();
+        try {
+            $word = Word::findOrFail($id);
+
+            if ($request->has('content')) {
+                $word->content = $request->content;
+            }
+
+            if ($request->has('category_id')) {
+                $word->category_id = $request->category_id;
+            }
+
+            if ($word->save() && $word->answers()->delete()) {
+                foreach ($request->answer as $key => $value) {
+                    $word->answers()->create([
+                        'content' => $value,
+                        'is_correct' => isset($request->is_correct[$key]) ? 1 : 0,
+                    ]);
+                }
+                DB::commit();
+
+                return redirect()->action('Admin\WordsController@index')->with('status', trans('word.update.success'));
+            }
+        } catch (Exception $e) {
+            DB::rollback();
+            Log::debug($e);    
+        }
+
+    return back()->withErrors(trans('word.update.failed'));
+
     }
 
     /**

@@ -41,8 +41,10 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin', 'namespace' => 'Admi
     Route::resource('word', 'WordsController');
 });
 
-Route::group(['namespace' => 'User', 'middleware'=> 'auth'], function() {
+Route::group(['namespace' => 'Web', 'middleware'=> 'auth'], function() {
     Route::resource('profile', 'ProfilesController', ['except' => [
-        'create', 'store', 'delete',
+        'create', 'store', 'delete', 'index',
     ]]);
+    Route::get('change-password', 'ProfilesController@editPassword');
+    Route::put('change-password', 'ProfilesController@updatePassword');
 });

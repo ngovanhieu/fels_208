@@ -15,7 +15,9 @@
                                 </div>
                             @else
                                 <ul class="logged">
-                                    <li>{{ trans('fels.hello') }} <strong>{{ Auth::user()->name }}</strong>
+                                    <li>{{ trans('fels.hello') }} 
+                                        <a href="{{ action('Web\ProfilesController@show', ['id' => Auth::user()->id]) }}">
+                                        <strong>{{ Auth::user()->name }}</strong></a>
                                         <ul class="card-1">
                                             @if(Gate::allows('access-admin'))
                                             <li><a href="{{ url('/admin') }}" >{{ trans('fels.admin-cp') }}</a></li>

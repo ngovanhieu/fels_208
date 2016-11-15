@@ -16,7 +16,7 @@ class CheckRole
      */
     public function handle($request, Closure $next)
     {
-        if (!$request->user()->isAdmin()) {
+        if (!($request->user()->isAdmin() || $request->user()->isSuperAdmin())) {
             // Redirect...
             return redirect('/home')->with('status', trans('fels.forbidden'));
         }

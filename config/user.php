@@ -7,4 +7,8 @@ return [
     'avatar' => [
          'upload_path' => 'images/uploads/avatars/',
     ],
+    'limit' => [
+        'list_in_admin' => 10,
+    ],
+    'password_default' => 123456,
 ];

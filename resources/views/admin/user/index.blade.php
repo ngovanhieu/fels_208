@@ -30,7 +30,7 @@
 @endif
 <hr>
 
-@if($users)
+@if ($users)
 <table class="table table-striped">
     <tr>
         <td>{{ trans('fels.id') }}</td>
@@ -44,7 +44,7 @@
     <tr>
         <td>{{ $user->id }}</td>
         <td>
-            <img src="{{ isset($user->avatar) ?  asset(($user->avatar_url)) : asset(config('fels.default-avatar')) }}" class="avatar">
+            <img src="{{ $user->avatar ? asset(($user->avatar_url)) : asset(config('fels.default-avatar')) }}" class="avatar">
         </td>
         <td><a href="{{ action('Admin\UsersController@show', ['id' => $user->id]) }}">{{ $user->name }}</a></td>
         <td>{{ $user->email }}</td>

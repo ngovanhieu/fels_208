@@ -59,7 +59,7 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-        return $this->role == config('user.admin');
+        return $this->role == config('user.role-default.admin');
     }
 
     public function isCurrent()
@@ -79,11 +79,11 @@ class User extends Authenticatable
 
     public function isSuperAdmin()
     {
-        return $this->role == config('user.super-admin');
+        return $this->role == config('user.role-default.super-admin');
     }
 
     public function isMember()
     {
-        return $this->role == config('user.member');
+        return $this->role == config('user.role-default.member');
     }
 }

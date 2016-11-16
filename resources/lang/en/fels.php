@@ -42,6 +42,7 @@ return [
         'back-to-profile' => 'Back to profile',
         'learn' => 'Learning',
         'done' => 'Done',
+        'back-to-list' => 'Back to list',
     ],
     'status' => [
         'nothing-to-show' => 'There is not any content, you can create the first one',

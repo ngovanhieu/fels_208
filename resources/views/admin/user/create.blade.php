@@ -35,10 +35,7 @@
     </div>
     <div class="form-group">
         {!! Form::label('role', trans('users.role')) !!}
-        {!! Form::select('role', ['1' => trans('users.role-user.1'), '2' => trans('users.role-user.2')],
-            '', 
-            ['class' => 'form-control'])
-        !!}
+        {!! Form::select('role', getRoleOptions(), '', ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
         {!! Form::submit(trans('fels.button.create'), ['class' => 'btn btn-success']) !!}

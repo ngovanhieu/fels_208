@@ -45,6 +45,7 @@ function makeLesson($words) {
 
         return null;
     }
+}
 
 //Select role
 function getRoleOptions() {

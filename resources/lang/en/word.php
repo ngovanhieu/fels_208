@@ -11,6 +11,8 @@ return [
     'answer' => 'Answer',
     'add-answer' => 'Add Another Input Box',
     'is-correct' => 'Is it correct?',
+    'answer' => 'Answer',
+    'true-answer' => 'This is the true answer',
     'create' => [
         'failed' => 'Sorry, there was an internal error',
         'success' => 'Created succcessfully',

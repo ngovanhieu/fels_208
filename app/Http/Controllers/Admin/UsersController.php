@@ -10,7 +10,7 @@ use Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreUser;
+use App\Http\Requests\UserManage;
 
 class UsersController extends Controller
 {
@@ -48,31 +48,28 @@ class UsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreUser $request)
+    public function store(UserManage $request)
     {
-        if ($request->role == 1 || $request->role == 2) {
-            DB::beginTransaction();
+        DB::beginTransaction(); 
+         
+        try {
+            $input = $request->all();
+            $user = new User;
+            $user->name = $input['name'];
+            $user->email = $input['email'];
+            $user->role = $input['role'];
+            $user->password = config('user.password_default');
+            $user->save();
+            
+            DB::commit();
 
-            try {
-                $user = new User;
-                $user->name = $request->input('name');
-                $user->email = $request->input('email');
-                $user->role = $request->input('role');
-                $user->password = config('user.password_default');
-                $user->save();
-                
-                DB::commit();
-
-                return redirect('admin/user')->with('status', trans('users.create.success'));
-            } catch (Exception $e) {
-                DB::rollback();
-                Log::debug($e);
-
-                return back()->withErrors(trans('users.create.failed'));
-            }
-        }
-
-        return back()->withErrors(trans('users.create.failed'));
+            return redirect('admin/user')->with('status', trans('users.create.success'));
+        } catch (Exception $e) {
+            DB::rollback();
+            Log::debug($e);
+ 
+             return back()->withErrors(trans('users.create.failed'));
+         }
     }
 
     /**
@@ -83,7 +80,9 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        $this->viewData['user'] = User::findOrFail($id);
+
+        return view('admin.user.detail', $this->viewData);
     }
 
     /**
@@ -94,7 +93,16 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        if (!($user->isSuperAdmin() || $user->isAdmin() && Auth::user()->isAdmin())) {
+            $this->viewData['user'] = $user;
+
+            return view('admin.user.edit', $this->viewData);
+        }
+
+        return redirect()->action('Admin\UsersController@show', ['id' => $id])
+            ->withErrors(trans('users.update.permission'));
     }
 
     /**
@@ -104,9 +112,31 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserManage $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $input = $request->all();
+
+        if (!($user->isSuperAdmin() || $user->isAdmin() &&  Auth::user()->isAdmin())) {
+            $user->name = $input['name'];
+            $user->email = $input['email'];
+
+            if (!(Auth::user()->isAdmin())) {
+                $user->role = $input['role'];
+            }
+            $path = config('user.avatar.upload_path') . $user->id . '/';
+
+            if (isset($input['avatar'])) {
+                $user->avatar = uploadImage($input['avatar'], $path, true) ?: $user->avatar;
+            }
+
+            if ($user->save()) {
+                return redirect()->back()->with('status', trans('fels.status.profile-updated'));
+            }
+        }
+
+        return redirect()->action('Admin\UsersController@show', ['id' => $id])
+            ->withErrors(trans('users.update.permission'));
     }
 
     /**
@@ -117,6 +147,15 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        if (!($user->isSuperAdmin() || ($user->isAdmin() && Auth::user()->isAdmin()))) {
+            $user->delete();
+
+            return redirect()->action('Admin\UsersController@index')
+                ->withSuccess(trans('users.delete.success'));
+        }
+
+        return back()->withErrors(trans('users.delete.permission'));
     }
 }

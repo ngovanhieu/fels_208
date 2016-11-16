@@ -45,4 +45,13 @@ function makeLesson($words) {
 
         return null;
     }
+
+//Select role
+function getRoleOptions() {
+    $results = [];
+    foreach (config('user.role-select') as $role) {
+        $results[$role] = trans('users.role-user.' . $role);
+    }
+
+    return $results;
 }

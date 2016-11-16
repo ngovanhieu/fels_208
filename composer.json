@@ -10,7 +10,9 @@
         "laravel/socialite": "^2.0",
         "laravelcollective/html": "^5.3.0",
         "doctrine/dbal": "^2.5",
-        "barryvdh/laravel-debugbar": "^2.3"
+        "barryvdh/laravel-debugbar": "^2.3",
+        "laravel/scout": "^1.1",
+        "algolia/algoliasearch-client-php": "^1.11"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

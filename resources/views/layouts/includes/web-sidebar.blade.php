@@ -7,6 +7,11 @@
 <p>{{ $user->name }}</p>
 <ul class="nav nav-pills nav-stacked panel panel-default sidebar">
     <li role="presentation">
+        <a href="{{ route('wordlist') }}">
+            <strong>{{ trans('web/word.wordlist') }}</strong>
+        </a>
+    </li>
+    <li role="presentation">
         <a href="{{ action('Web\LessonsController@index') }}">
             <strong>{{ trans('web/lesson.your-lesson') }}</strong>
         </a>

@@ -677,4 +677,21 @@ body.error-page {
     padding: 20px 0;
     border-bottom: solid 1px #000;
 }
+.subview .content .search .form-control {
+    width: 100%;
+    border: none;
+}
+.subview .content .search .input-group-addon {
+    padding: 0;
+    border: none;
+}
+.subview .content .btn {
+    height: auto;
+    border: none;
+    box-shadow: none;
+    background: none;
+}
+.subview .content .wordlist {
+    padding-top: 25px;
+}
 

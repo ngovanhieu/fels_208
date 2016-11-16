@@ -56,4 +56,5 @@ Route::group(['namespace' => 'Web', 'middleware'=> 'auth'], function() {
     Route::resource('lesson', 'LessonsController', ['only' => [
         'index', 'show', 'store',
     ]]);
+    Route::get('wordlist', 'WordsController')->name('wordlist');
 });

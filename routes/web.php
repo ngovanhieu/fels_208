@@ -49,4 +49,11 @@ Route::group(['namespace' => 'Web', 'middleware'=> 'auth'], function() {
     ]]);
     Route::get('change-password', 'ProfilesController@editPassword');
     Route::put('change-password', 'ProfilesController@updatePassword');
+    Route::resource('category', 'CategoriesController', ['only' => [
+        'index', 'show',
+    ]]);
+    Route::get('lesson/do/{category_id}', 'LessonsController@doLesson');
+    Route::resource('lesson', 'LessonsController', ['only' => [
+        'index', 'show', 'store',
+    ]]);
 });

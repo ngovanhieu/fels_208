@@ -40,6 +40,8 @@ return [
         'remove' => 'Remove',
         'update-submit' => 'Submit',
         'back-to-profile' => 'Back to profile',
+        'learn' => 'Learning',
+        'done' => 'Done',
     ],
     'status' => [
         'nothing-to-show' => 'There is not any content, you can create the first one',

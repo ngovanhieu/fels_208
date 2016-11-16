@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('sidebar')
+    @include('layouts.includes.web-sidebar')
+@endsection
+
 @section('content')
 
 @if (session()->has('status'))

@@ -12,4 +12,8 @@ return [
         'failed' => 'Can not save your test to DB',
     ],
     'rating' => 'Rating',
+    'id' => 'ID',
+    'category' => 'Category',
+    'your-lesson' => 'View your old lessons',
+    'do-lesson' => 'Choose a category',
 ];

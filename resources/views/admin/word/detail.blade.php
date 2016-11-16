@@ -18,15 +18,16 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">{{ trans('word.answer') }}</label>
             <div class="col-sm-10">
-                <p class="form-control-static">{{ $answer->content }}</p>
-                @if($answer->isCorrect)
-                    <p>This is true</p>
-                @endif
+                <p class="form-control-static answer">{{ $answer->content }}
+                {!! ($answer->is_correct) ? "<span><strong>" . trans('word.true-answer') . "</strong></span>" : '' !!}
+                </p>
             </div>
         </div>
     @endforeach
     <div class="form-group">
-        <a href="{{ action('Admin\CategoriesController@edit', ['id' => $word->id]) }}" class="btn btn-default">{{ trans('fels.button.edit') }}</a>
+        <a href="{{ action('Admin\CategoriesController@edit', ['id' => $word->id]) }}" class="btn btn-default">
+            {{ trans('fels.button.edit') }}
+        </a>
     </div>
 </form>
 

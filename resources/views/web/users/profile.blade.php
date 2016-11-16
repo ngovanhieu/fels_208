@@ -5,11 +5,7 @@
 {{ $title }}
 <hr>
 @if($user)
-@if(!$user->avatar)
-    <img src="{{ asset(config('fels.default-avatar')) }}" class="avatar" alt=""><br><br>
-@else
-    <img src="{{ asset($user->avatar_url) }}" class="avatar"><br><br>
-@endif
+    <img src="{{ $user->avatar ? asset(($user->avatar_url)) : asset(config('fels.default-avatar')) }}" class="avatar">
     <label>{{ trans('fels.name') }}: </label> {{ $user->name }}<br>
     <label>{{ trans('fels.email') }}: </label> {{ $user->email }}<br><br>
     @if($user->isCurrent())
@@ -19,6 +15,24 @@
         <a href="{{ action('Web\ProfilesController@editPassword') }}">
             <button class="btn btn-info" type="button">{{ trans('users.change-password') }}</button>
         </a>
+    @elseif($check_follow)
+        <a href="{{ action('Web\FollowsController@unfollow', ['id' => $user->id]) }}" class="btn btn-success"
+              onclick="event.preventDefault(); 
+              document.getElementById('unfollow-form').submit();">
+              <strong>{{ trans('users.user-follow.unfollow') }}</strong>
+        </a>
+        <form id="unfollow-form" action="{{ action('Web\FollowsController@unfollow', ['id' => $user->id]) }}" method="POST" style="display: none;">
+            {{ csrf_field() }}
+        </form>
+    @else
+        <a href="{{ action('Web\FollowsController@follow', ['id' => $user->id]) }}" class="btn btn-success"
+              onclick="event.preventDefault(); 
+              document.getElementById('follow-form').submit();">
+              <strong>{{ trans('users.user-follow.follow') }}</strong>
+        </a>
+        <form id="follow-form" action="{{ action('Web\FollowsController@follow', ['id' => $user->id]) }}" method="POST" style="display: none;">
+            {{ csrf_field() }}
+        </form>
     @endif
 @else
     <div class="alert alert-danger">{{ trans('users.not-found') }}</div>

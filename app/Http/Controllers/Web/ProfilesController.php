@@ -27,7 +27,15 @@ class ProfilesController extends Controller
      */
     public function show($id)
     {
+        // $this->viewData['check_follow']
         $this->viewData['user'] = User::find($id);
+        $this->viewData['check_follow'] = User::find(Auth::user()->id)->followers()
+            ->where('following_id', $id)->first();
+        // if (!$check_follow)
+        // {
+        //     dd('Da follow');
+        // }
+        // dd('Chua follow');
 
         return view('web.users.profile', ['title' => trans('users.show-profile')], $this->viewData);
     }

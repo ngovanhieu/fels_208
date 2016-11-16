@@ -56,4 +56,6 @@ Route::group(['namespace' => 'Web', 'middleware'=> 'auth'], function() {
     Route::resource('lesson', 'LessonsController', ['only' => [
         'index', 'show', 'store',
     ]]);
+    Route::post('/follow/{id}', 'FollowsController@follow');
+    Route::post('/unfollow/{id}', 'FollowsController@unfollow');
 });
